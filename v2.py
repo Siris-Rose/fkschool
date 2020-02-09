@@ -1,3 +1,4 @@
+from random import randint
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 import time
@@ -5,7 +6,7 @@ import time
 # 初始信息
 user_name = '××××××××××××'      # 学号
 password = '××××××××'           # 密码
-body_temperature = '37'         # 体温
+body_temperature = str(randint(362, 370) / 10)     # 随机生成一个36.2~37.0的体温
 
 # ————————————————————————————————————————————————————无感情分割线———————————————————————————————————————————————————— #
 
