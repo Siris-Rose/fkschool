@@ -49,15 +49,15 @@ driver.find_element_by_class_name('fr-radio-radiooff').click()
 # 填入其余两项必需
 raw_id = driver.find_element_by_class_name('dirty').get_attribute('id')             # 获取行数ID
 id_of_temperature = 'D' + raw_id[1:]                                                # 体温ID
-id_of_difficulty = 'Q' + raw_id[1:]                                                  # 思想状况ID
+# id_of_difficulty = 'Q' + raw_id[1:]                                                  # 思想状况ID
 driver.find_element_by_id(id_of_temperature).click()                                # 这里比较坑，
 driver.find_element_by_id(id_of_temperature).click()                                # 同一个元素要点击两次才能send_keys
 driver.find_element_by_class_name('fr-texteditor').send_keys(body_temperature)      # 填入体温
 
-driver.find_element_by_id(id_of_difficulty).click()                                  # 坑死了
-driver.find_element_by_id(id_of_difficulty).click()                                  # 代码不规范，自动化两行泪。
-driver.find_element_by_class_name('fr-trigger-center').click()
-button = driver.find_elements_by_class_name('fr-combo-list')[0].click()                     # lst[0]。。拿到表单了~
+# driver.find_element_by_id(id_of_difficulty).click()                                  # 坑死了
+# driver.find_element_by_id(id_of_difficulty).click()                                  # 代码不规范，自动化两行泪。
+# driver.find_element_by_class_name('fr-trigger-center').click()
+# button = driver.find_elements_by_class_name('fr-combo-list')[0].click()                     # lst[0]。。拿到表单了~
 # ActionChains(driver).move_to_element_with_offset(button, 50, 20).click().perform()  # 用动作链移动坐标点击“正常”位置
 
 # ————————————————————————————————————————————————————无感情分割线———————————————————————————————————————————————————— #
