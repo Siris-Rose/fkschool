@@ -46,7 +46,7 @@ driver.find_element_by_xpath('//*[@id="0"]/tbody')
 # 找到“与昨日情况一致”按钮并点击
 driver.find_element_by_class_name('fr-radio-radiooff').click()
 
-# 填入其余两项必需
+# 填入其余两项必需（现在只用再填写个体温）
 raw_id = driver.find_element_by_class_name('dirty').get_attribute('id')             # 获取行数ID
 id_of_temperature = 'D' + raw_id[1:]                                                # 体温ID
 # id_of_difficulty = 'Q' + raw_id[1:]                                                  # 思想状况ID
