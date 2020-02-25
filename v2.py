@@ -74,7 +74,7 @@ class FK:
         id_of_date = 'A' + str(int(raw_id[:-4][1:]) - 1) + raw_id[-4:]
         date = driver.find_element_by_id(id_of_date).text
         if date != today:
-            print(self.alias, "Not Completed today! Prepare to processing...", today)
+            print(self.alias, "Not Completed! Processing...", today)
             driver.quit()
             self.start_fuck(raw_id)
         else:
