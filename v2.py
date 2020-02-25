@@ -105,13 +105,14 @@ class FK:
 
         # 提交并检查
         driver.find_element_by_xpath('//*[@id="fr-btn-Submit"]/div/em/button').click()
-        msg = driver.switch_to.alert.text
-        if msg == "提交成功":
-            driver.quit()
-            print(self.alias, "Done!", today)
-        else:
-            driver.quit()
-            self.check(today)
+        # msg = driver.switch_to.alert.text
+        # if msg == "提交成功":
+        #     driver.quit()
+        #     print(self.alias, "Done!", today)
+        # else:
+        driver.implicitly_wait(10)
+        driver.quit()
+        self.check(today)
 
 
 if __name__ == '__main__':
