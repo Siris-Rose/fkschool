@@ -103,7 +103,7 @@ class FK:
         # 点击提交
         time.sleep(2)
         driver.find_element_by_xpath('//*[@id="fr-btn-Submit"]/div/em/button').click()
-        time.sleep(8) # 防止运行太快提交没点上从而进入死循环
+        time.sleep(8)  # 防止运行太快提交没点上从而进入死循环
         # msg = driver.switch_to.alert.text
         # if msg == "提交成功":
         #     driver.quit()
