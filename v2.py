@@ -101,7 +101,9 @@ class FK:
         # ActionChains(driver).move_to_element_with_offset(button, 50, 20).click().perform()  # 用动作链移动坐标点击“正常”位置
 
         # 点击提交
+        time.sleep(2)
         driver.find_element_by_xpath('//*[@id="fr-btn-Submit"]/div/em/button').click()
+        time.sleep(8) # 防止运行太快提交没点上从而进入死循环
         # msg = driver.switch_to.alert.text
         # if msg == "提交成功":
         #     driver.quit()
