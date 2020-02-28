@@ -22,17 +22,17 @@ class FK:
         # --------------------------------------------------------------------------------------------------------------
         # 如果用正常模式，把这块取消注释，并且注释掉下一个块
 
-        driver = webdriver.Chrome()
+        # driver = webdriver.Chrome()
 
         # --------------------------------------------------------------------------------------------------------------
         # 如果用无头模式在服务器中跑，把这块取消注释，并且注释掉上一个块
 
-        # chrome_options = Options()
-        # chrome_options.add_argument('--headless')
-        # chrome_options.add_argument('--disable-gpu')
-        # chrome_options.add_argument('--no-sandbox')
-        # chrome_options.add_argument('--disable-dev-shm-usage')
-        # driver = webdriver.Chrome(chrome_options=chrome_options)
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        driver = webdriver.Chrome(chrome_options=chrome_options)
 
         # --------------------------------------------------------------------------------------------------------------
 
@@ -81,6 +81,7 @@ class FK:
             self.check()
         else:
             print(self.alias, "Already Completed!", today)
+            print("------------------------------")
             driver.quit()
 
     def process(self, driver, raw_id):
@@ -100,10 +101,10 @@ class FK:
         # button = driver.find_elements_by_class_name('fr-combo-list')[0].click()                     # lst[0]。。拿到表单了~
         # ActionChains(driver).move_to_element_with_offset(button, 50, 20).click().perform()  # 用动作链移动坐标点击“正常”位置
 
-        # 点击提交
         time.sleep(2)
+        # 点击提交
         driver.find_element_by_xpath('//*[@id="fr-btn-Submit"]/div/em/button').click()
-        time.sleep(8)  # 防止运行太快提交没点上从而进入死循环
+        time.sleep(8)
         # msg = driver.switch_to.alert.text
         # if msg == "提交成功":
         #     driver.quit()
