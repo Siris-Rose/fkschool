@@ -22,17 +22,17 @@ class FK:
         # --------------------------------------------------------------------------------------------------------------
         # 如果用正常模式，把这块取消注释，并且注释掉下一个块
 
-        # driver = webdriver.Chrome()
+        driver = webdriver.Chrome()
 
         # --------------------------------------------------------------------------------------------------------------
         # 如果用无头模式在服务器中跑，把这块取消注释，并且注释掉上一个块
 
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        driver = webdriver.Chrome(chrome_options=chrome_options)
+        # chrome_options = Options()
+        # chrome_options.add_argument('--headless')
+        # chrome_options.add_argument('--disable-gpu')
+        # chrome_options.add_argument('--no-sandbox')
+        # chrome_options.add_argument('--disable-dev-shm-usage')
+        # driver = webdriver.Chrome(chrome_options=chrome_options)
 
         # --------------------------------------------------------------------------------------------------------------
 
@@ -76,18 +76,19 @@ class FK:
         id_of_date = 'A' + str(int(raw_id[:-4][1:]) - 1) + raw_id[-4:]
         date = driver.find_element_by_id(id_of_date).text
         if date != today:
-            print(self.alias, "Not Completed! Processing...", today)
+            print(self.alias, "还没填，处理中...")
             self.process(driver, raw_id)
             self.check()
         else:
-            print(self.alias, "Already Completed!", today)
+            print(self.alias, "填完了!", today)
             print("------------------------------")
             driver.quit()
 
     def process(self, driver, raw_id):
         # 填入其余两项必需（现在只用再填写个体温）
         id_of_temperature = 'D' + raw_id[1:]  # 体温ID
-        # id_of_difficulty = 'Q' + raw_id[1:]                                                  # 思想状况ID
+        id_of_OverseasPeople = 'H' + raw_id[1:]  # 是否接待境外人员ID
+        # id_of_difficulty = 'Q' + raw_id[1:]  # 思想状况ID
         driver.find_element_by_id(id_of_temperature).click()  # 这里比较坑，
         driver.find_element_by_id(id_of_temperature).click()  # 同一个元素要点击两次才能send_keys
         # driver.find_element_by_id(id_of_temperature).send_keys(self.body_temperature)
@@ -100,6 +101,12 @@ class FK:
         # driver.find_element_by_class_name('fr-trigger-center').click()
         # button = driver.find_elements_by_class_name('fr-combo-list')[0].click()                     # lst[0]。。拿到表单了~
         # ActionChains(driver).move_to_element_with_offset(button, 50, 20).click().perform()  # 用动作链移动坐标点击“正常”位置
+
+        # 是否接待境外人员填“否”
+        driver.find_element_by_id(id_of_OverseasPeople).click()
+        driver.find_element_by_id(id_of_OverseasPeople).click()
+        driver.find_element_by_class_name('fr-trigger-center').click()
+        driver.find_elements_by_class_name('fr-combo-list')[0].click()
 
         time.sleep(2)
         # 点击提交
